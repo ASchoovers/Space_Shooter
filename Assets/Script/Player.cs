@@ -81,9 +81,9 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CalculateMovement();        
+        CalculateMovement();
 
-        if (Input.GetKeyDown(KeyCode.Space) && Time.time > _canFire)
+        if (Input.GetKeyDown(KeyCode.Space) && Time.time > _canFire && _currentAmmoPrimary > 0)
         {
             FireLaser();
         }
@@ -94,7 +94,7 @@ public class Player : MonoBehaviour
 
         _canFire = Time.time + _fireRate;
         _audioSource.Play();
-        
+
 
         if (_isTripleShotActive == true)
         {
@@ -104,9 +104,9 @@ public class Player : MonoBehaviour
         else
         {
             Instantiate(_laserPrefab, transform.position + new Vector3(0, 0.8f, 0), Quaternion.identity);
-            
+            _currentAmmoPrimary--;
         }
-        
+        _uiManager.UpdateAmmo(_currentAmmoPrimary);
     }
 
 

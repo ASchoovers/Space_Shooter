@@ -77,6 +77,12 @@ public class UIManager : MonoBehaviour
 
     }
 
+    public void UpdateAmmo(int currentAmmo)
+    {
+        _ammoText.text = currentAmmo.ToString() + " / 15";
+    }
+
+
 
     public void GameOverSequence() {
 
