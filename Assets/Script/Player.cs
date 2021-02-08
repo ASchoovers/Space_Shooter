@@ -184,8 +184,9 @@ public class Player : MonoBehaviour
     public void TogglePowerup(int type)
     {
         // 0: Tripleshot | 1: Speed | 2: Shield
-        
-        switch (type) {
+
+        switch (type)
+        {
             case 0:
                 _isTripleShotActive = true;
                 StartCoroutine(PowerupPowerDownRoutine(0));
@@ -194,12 +195,12 @@ public class Player : MonoBehaviour
                 _speedMultiplier = 2;
                 StartCoroutine(PowerupPowerDownRoutine(1));
                 break;
-            case 2:                
+            case 2:
                 _spriteRenderer.color = _shieldState[0];
                 _shield.SetActive(true);
                 _isShieldActive = true;
                 _shieldStrength = 3;
-                //_uiManager.UpdateShield(_shieldStrength);
+                _uiManager.UpdateShield(_shieldStrength);
                 break;
             default:
                 break;
@@ -209,14 +210,32 @@ public class Player : MonoBehaviour
 
     }
 
-    public void DamageShields() {
+    public void DamageShields()
+    {
 
-        
-                   
+
+        if (_shieldStrength == 3)
+        {
+            _spriteRenderer.color = _shieldState[1];
+            _shieldStrength--;
+            _uiManager.UpdateShield(_shieldStrength);
+
+        }
+        else if (_shieldStrength == 2)
+        {
+
+            _spriteRenderer.color = _shieldState[2];
+            _shieldStrength--;
+            _uiManager.UpdateShield(_shieldStrength);
+        }
+        else if (_shieldStrength == 1)
+        {
             _shield.SetActive(false);
-            
+            _spriteRenderer.color = _shieldState[0];
             _isShieldActive = false;
-            
+            _shieldStrength--;
+            _uiManager.UpdateShield(_shieldStrength);
+        }
 
 
 

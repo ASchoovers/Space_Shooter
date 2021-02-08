@@ -51,9 +51,32 @@ public class UIManager : MonoBehaviour
 
     }
 
-    
 
-    
+    public void UpdateShield(int currentShield)
+    {
+
+        switch (currentShield)
+        {
+            case 0:
+                _shieldText.text = "0 / 3";
+                break;
+            case 1:
+                _shieldText.text = "1 / 3";
+                break;
+            case 2:
+                _shieldText.text = "2 / 3";
+                break;
+            case 3:
+                _shieldText.text = "3 / 3";
+                break;
+            default:
+                break;
+
+        }
+
+
+    }
+
 
     public void GameOverSequence() {
 
