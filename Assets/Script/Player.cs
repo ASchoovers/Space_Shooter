@@ -26,6 +26,8 @@ public class Player : MonoBehaviour
     private float _canFire = -1f;
     private int _maxAmmoPrimary = 15;
     private int _currentAmmoPrimary = 15;
+    [SerializeField]private GameObject _deathRay;
+    private bool _deathRayActive = false;
 
 
     [Header("Misc")]
@@ -183,7 +185,7 @@ public class Player : MonoBehaviour
 
     public void TogglePowerup(int type)
     {
-        // 0: Tripleshot | 1: Speed | 2: Shield | 3: Ammo Primary
+        // 0: Tripleshot | 1: Speed | 2: Shield | 3: Ammo Primary | 4: Health | 5: DeathRay (beam)
 
         switch (type)
         {
@@ -217,6 +219,12 @@ public class Player : MonoBehaviour
                 }
                 
                 _uiManager.UpdateLives(_lives);
+                break;
+            case 5:
+                _deathRayActive = true;
+                _deathRay.SetActive(true);
+                StartCoroutine(PowerupPowerDownRoutine(5));
+
                 break;
             default:
                 break;
@@ -275,6 +283,12 @@ public class Player : MonoBehaviour
             case 1:
                 yield return new WaitForSeconds(7.0f);
                 _speedMultiplier = 1;
+                break;
+            case 5:
+                yield return new WaitForSeconds(5.0f);
+                _deathRay.SetActive(false);
+                _deathRayActive = false;
+               
                 break;
             default:
                 break;

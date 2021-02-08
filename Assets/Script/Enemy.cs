@@ -115,5 +115,22 @@ public class Enemy : MonoBehaviour
             Destroy(other.gameObject);
             Destroy(this.gameObject, 2.8f);
         }
+
+        if (other.tag == "Beam")
+        {
+            Debug.Log("Triggered by Beam");
+
+            if (_player != null)
+            {
+
+                _player.UpdateScore(_scoreValue);
+
+            }
+            _animator.SetTrigger("TriggerDestroy");
+            _speed = 0f;
+            _audioSource.Play();
+            Destroy(GetComponent<Collider2D>());
+            Destroy(this.gameObject, 2.8f);
+        }
     }
 }

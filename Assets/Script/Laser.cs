@@ -9,6 +9,9 @@ public class Laser : MonoBehaviour
     [SerializeField]
     private bool _isEnemyLaser = false;
     // Start is called before the first frame update
+    [SerializeField]
+    
+
     void Start()
     {
         
@@ -51,6 +54,7 @@ public class Laser : MonoBehaviour
         }
 
     }
+   
 
     public void MoveDown()
     {
