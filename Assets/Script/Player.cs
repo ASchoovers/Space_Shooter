@@ -121,7 +121,18 @@ public class Player : MonoBehaviour
 
         transform.Translate(direction * _speed * _speedMultiplier * Time.deltaTime);
 
-        
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            _speedMultiplier = 2;
+            _thruster.transform.localScale = new Vector3(0.7f, 0.5f, 0.7f);
+            Debug.LogError("BoostPressed");
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            _speedMultiplier = 1;
+            _thruster.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            Debug.LogError("BoostReset");
+        }
 
         transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -3.8f, 0), 0);
 
