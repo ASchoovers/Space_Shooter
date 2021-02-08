@@ -206,6 +206,18 @@ public class Player : MonoBehaviour
                 _currentAmmoPrimary = _maxAmmoPrimary;
                 _uiManager.UpdateAmmo(_currentAmmoPrimary);
                 break;
+            case 4:
+                _lives++;
+                if (_lives == 2) {
+                    _engines[0].SetActive(false);
+                } else
+                {
+                    _engines[0].SetActive(false);
+                    _engines[1].SetActive(false);
+                }
+                
+                _uiManager.UpdateLives(_lives);
+                break;
             default:
                 break;
 
