@@ -11,8 +11,8 @@ public class Powerup : MonoBehaviour
     private AudioClip _clip;
     [Header("Type")]
     [SerializeField]
-    [Range(0, 2)]
-    [Tooltip("0: Triple Shot | 1: Speed | 2: Shield")]
+    [Range(0, 3)]
+    [Tooltip("0: Triple Shot | 1: Speed | 2: Shield | 3: Ammo Primary")]
     private int _powerupID;
     
 

@@ -2278,6 +2278,7 @@ MonoBehaviour:
   - {fileID: 8819884496361048907, guid: aed8996a00191a44d90f4ec2ea68ae41, type: 3}
   - {fileID: 7875543141145023858, guid: 426c84b6d5fa257439171490c212b123, type: 3}
   - {fileID: 4149723413044236230, guid: 98830d3cb12f79f48ba114bfff699802, type: 3}
+  - {fileID: 6610450295039284722, guid: 20f1619d4bcee4a408562419da4dbf2e, type: 3}
   _powerupContainer: {fileID: 1337541638}
 --- !u!4 &1343709058
 Transform:

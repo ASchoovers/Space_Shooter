@@ -183,7 +183,7 @@ public class Player : MonoBehaviour
 
     public void TogglePowerup(int type)
     {
-        // 0: Tripleshot | 1: Speed | 2: Shield
+        // 0: Tripleshot | 1: Speed | 2: Shield | 3: Ammo Primary
 
         switch (type)
         {
@@ -201,6 +201,10 @@ public class Player : MonoBehaviour
                 _isShieldActive = true;
                 _shieldStrength = 3;
                 _uiManager.UpdateShield(_shieldStrength);
+                break;
+            case 3:
+                _currentAmmoPrimary = _maxAmmoPrimary;
+                _uiManager.UpdateAmmo(_currentAmmoPrimary);
                 break;
             default:
                 break;
