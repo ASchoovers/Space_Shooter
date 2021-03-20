@@ -22,12 +22,14 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject _tripleLaserPrefab;
     [SerializeField] private bool _isTripleShotActive = false;
     private bool _isShieldActive = false;
-    [SerializeField] private float _fireRate = 0.5f;
+    [SerializeField] private float _fireRate = 1f;
     private float _canFire = -1f;
     private int _maxAmmoPrimary = 15;
     private int _currentAmmoPrimary = 15;
     [SerializeField]private GameObject _deathRay;
     private bool _deathRayActive = false;
+    [SerializeField]
+    private GameObject _homingMissile;
 
 
     [Header("Misc")]
@@ -38,6 +40,8 @@ public class Player : MonoBehaviour
 
     private SpawnManager _spawnManager;
     private UIManager _uiManager;
+    [SerializeField]
+    private GameObject _enemyContainer;
 
     [SerializeField] private AudioClip _laserClip;
     private AudioSource _audioSource;
@@ -89,6 +93,10 @@ public class Player : MonoBehaviour
         {
             FireLaser();
         }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            FireMissile();
+        }
     }
 
     private void FireLaser()
@@ -111,6 +119,11 @@ public class Player : MonoBehaviour
         _uiManager.UpdateAmmo(_currentAmmoPrimary);
     }
 
+    private void FireMissile()
+    {
+        GameObject newMissile = Instantiate(_homingMissile, transform.position + new Vector3(0, 0.8f, 0), Quaternion.identity);
+        newMissile.GetComponent<Homing_Missile_2D>().setEnemyContainer(_enemyContainer);
+    }
 
     private void CalculateMovement()
     {
