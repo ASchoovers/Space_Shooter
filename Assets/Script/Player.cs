@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
+using UnityEngine.UI;
+using Slider = UnityEngine.UI.Slider;
 
 public class Player : MonoBehaviour
 {
@@ -50,6 +53,11 @@ public class Player : MonoBehaviour
     private Color[] _shieldState;
 
     private SpriteRenderer _spriteRenderer;
+    
+    [SerializeField]
+    private int _thrusterCooldown = 0;
+    [SerializeField]
+    private Slider _thrustSlide;
 
 
     // Start is called before the first frame update
@@ -131,16 +139,17 @@ public class Player : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
 
         Vector3 direction = new Vector3(horizontalInput, verticalInput, 0);
+        StartCoroutine(ThrusterCoolRoutine());
 
 
 
         transform.Translate(direction * _speed * _speedMultiplier * Time.deltaTime);
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && _thrusterCooldown < 100)
         {
             _speedMultiplier = 2;
             _thruster.transform.localScale = new Vector3(0.7f, 0.5f, 0.7f);
-            Debug.LogError("BoostPressed");
+            StartCoroutine(ThrusterBoostRoutine());
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
@@ -307,5 +316,45 @@ public class Player : MonoBehaviour
                 break;
 
         }
+    }
+    IEnumerator ThrusterBoostRoutine()
+    {
+        if (_thrusterCooldown < 100)
+        {
+            Debug.Log("boot coroutine triggered");
+            _thrusterCooldown += 5;
+            _thrustSlide.value = _thrusterCooldown;
+            yield return new WaitForSeconds(1f);
+        }
+
+        
+    }
+    IEnumerator ThrusterCoolRoutine()
+    {
+        if (_thrusterCooldown > 0)
+        {
+            if (_thrusterCooldown >= 100)
+            {
+                Debug.Log("overheat triggered");
+                yield return new WaitForSeconds(5f);
+                _thrusterCooldown --;
+                
+               
+            }
+            else
+            {
+                Debug.Log("cooldown triggered");
+                _thrusterCooldown--;
+                _thrustSlide.value = _thrusterCooldown;
+                yield return new WaitForSeconds(1f);
+
+            }
+            
+        }
+        else
+        {
+            yield return null;
+        }
+        
     }
 }

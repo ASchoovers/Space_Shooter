@@ -1,0 +1,13 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Rider ignored files
+/projectSettingsUpdater.xml
+/modules.xml
+/.idea.Space Shooter Course.iml
+/contentModel.xml
+# Datasource local storage ignored files
+/../../../../../../../../:\Unity Libary\GameDevHQ\2D Game Development\Space Shooter Course\.idea\.idea.Space Shooter Course\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
