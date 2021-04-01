@@ -10,8 +10,8 @@ public class Homing_Missile_2D : MonoBehaviour
     private Transform[] _targets;
     [SerializeField]
     private Transform _closestTarget;
-    private float _speed = 10f;
-    private float rotateSpeed = 150f;
+    private float _speed = 20f;
+    private float rotateSpeed = 1000f;
     private Rigidbody2D rb;
 
 

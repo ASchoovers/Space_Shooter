@@ -11,7 +11,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image _livesImg;
     [SerializeField] private Sprite[] _livesSprites;
     [SerializeField] private Text _shieldText;
-    [SerializeField]private Text _ammoText;
+    [SerializeField] private Text _ammoText;
     private GameManager _gameManager;
     void Start()
     {
