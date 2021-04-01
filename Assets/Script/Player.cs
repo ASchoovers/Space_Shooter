@@ -59,6 +59,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private Slider _thrustSlide;
 
+    private Camera _maincam;
+    private Animator _mainCamAnimator;
+
 
     // Start is called before the first frame update
     void Start()
@@ -66,6 +69,8 @@ public class Player : MonoBehaviour
         _spriteRenderer = _shield.GetComponent<SpriteRenderer>();
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
         _audioSource = GetComponent<AudioSource>();
+        _maincam = Camera.main;
+        _mainCamAnimator = Camera.main.GetComponent<Animator>();
         if (!_audioSource)
         {
 
@@ -176,7 +181,8 @@ public class Player : MonoBehaviour
 
 
     public void TakeDamage(int hitpoints) {
-
+        
+        _mainCamAnimator.SetTrigger("Shake");
         if (_isShieldActive) {
 
             DamageShields();
